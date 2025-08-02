@@ -1,10 +1,1585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Hub Service - Find Your Perfect Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+
+        }
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #d35400;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffe0b2;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #ffe0b2, #fff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 5%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        /* Alternative background images - uncomment to use different ones */
+        /*
+        .hero {
+          background: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+        }
+
+        .hero {
+          background: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+        }
+
+        .hero {
+          background: url('https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+        }
+        */
+
+        /* .hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.15"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"><animateTransform attributeName="transform" type="translate" values="0 0;50 30;0 0" dur="20s" repeatCount="indefinite"/></circle><circle cx="800" cy="300" r="150" fill="url(%23a)"><animateTransform attributeName="transform" type="translate" values="0 0;-30 50;0 0" dur="25s" repeatCount="indefinite"/></circle><circle cx="400" cy="700" r="120" fill="url(%23a)"><animateTransform attributeName="transform" type="translate" values="0 0;40 -40;0 0" dur="22s" repeatCount="indefinite"/></circle><circle cx="600" cy="500" r="80" fill="url(%23a)"><animateTransform attributeName="transform" type="translate" values="0 0;20 -20;0 0" dur="18s" repeatCount="indefinite"/></circle></svg>') center/cover;
+          animation: float 20s ease-in-out infinite; */
+        /* } */
+
+        .hero-container {
+            position: relative;
+            z-index: 3;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-left {
+            text-align: left;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            letter-spacing: 0.02em;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: -0.02em;
+        }
+
+        .title-line {
+            display: block;
+            color: white;
+        }
+
+        .title-highlight {
+            display: block;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #ffe0b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 0.1em;
+        }
+
+        .hero-description {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.4;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.01em;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .stat-number {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .stat-item .stat-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.8;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Hero Right Side */
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') center/cover;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-card.card-1 {
+            top: -20px;
+            left: -30px;
+            animation-delay: 0s;
+        }
+
+        .floating-card.card-2 {
+            bottom: -20px;
+            right: -30px;
+            animation-delay: 1s;
+        }
+
+        .floating-card.card-3 {
+            top: 50%;
+            right: -60px;
+            animation-delay: 2s;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        .card-content h4 {
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-content p {
+            color: #666;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 1.2s both;
+        }
+
+        .scroll-arrow {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary {
+            background: #ffb74d;
+            color: black;
+            box-shadow: 0 8px 25px rgba(255, 183, 77, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #ffa726;
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 183, 77, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #ffb74d;
+        }
+
+        .btn-secondary:hover {
+            background: #ffb74d;
+            color: black;
+            transform: translateY(-3px);
+        }
+
+        /* Dogs Section */
+        .dogs-section {
+            padding: 6rem 5%;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff8c42 0%, #ffa726 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .dog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .dog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .dog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #ff8c42, #ffa726);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dog-image::before {
+            content: '🐕';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+
+        .dog-card:hover .dog-image::before {
+            opacity: 0.6;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .dog-info {
+            padding: 2rem;
+        }
+
+        .dog-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .dog-details {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .dog-tag {
+            background: #e2e8f0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: #475569;
+        }
+
+        .dog-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .adopt-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff8c42 0%, #ffa726 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .adopt-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 140, 66, 0.4);
+        }
+
+        /* Donation Section */
+        .donation-section {
+            padding: 4rem 5%;
+            background: white;
+            color: #333;
+        }
+
+        .donation-story {
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .story-content {
+            text-align: left;
+        }
+
+        .story-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: #1e293b;
+        }
+
+        .story-text {
+            margin-bottom: 2rem;
+        }
+
+        .story-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: #475569;
+        }
+
+        .donation-cta {
+            margin-top: 2rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #dc2626;
+            text-align: center;
+        }
+
+        .donation-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .donation-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .donation-image img {
+            width: 100%;
+            height: 100%;
+            max-width: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .donation-form-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .form-security {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .lock-icon {
+            font-size: 1rem;
+        }
+
+        .steps {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+        }
+
+        .donation-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 0.25rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .recurring-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .info-icon {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .currency-selector {
+            margin-bottom: 1.5rem;
+        }
+
+        .currency-selector select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #1e293b;
+            font-size: 0.9rem;
+        }
+
+        .currency-selector select option {
+            background: white;
+            color: #1e293b;
+        }
+
+        .donation-amounts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .amount-btn {
+            padding: 1rem 0.5rem;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            color: #3b82f6;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .amount-btn:hover, .amount-btn.active {
+            background: white;
+            color: #3b82f6;
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-amount {
+            margin-bottom: 2rem;
+        }
+
+        .custom-amount label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #475569;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            color: #1e293b;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+        }
+
+        .custom-amount input::placeholder {
+            color: #94a3b8;
+        }
+
+        .donation-btn {
+            background: #10b981;
+            color: white;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .donation-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .donation-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .donation-impact {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .donation-impact h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .impact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .impact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .impact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .impact-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .impact-content h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        /* Impact Section */
+        .impact-section {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff8c42 0%, #ffa726 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ff8c42;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff8c42;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: #64748b;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Enhanced hover effects */
+        .dog-card:hover .dog-image {
+            background: linear-gradient(45deg, #ff8c42, #ffa726, #ffb74d, #ff8c42);
+            background-size: 300% 300%;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .adopt-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .stat-card:hover .stat-number {
+            animation: pulse 1s ease-in-out;
+        }
+
+        /* Enhanced button styles */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-left {
+                text-align: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .dogs-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .donation-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .donation-amounts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .donation-amounts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                padding: 1rem 3%;
+            }
+
+            .dogs-section, .donation-section, .impact-section {
+                padding: 4rem 3%;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #1e293b;
+        }
+
+        .modal h2 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .modal p {
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-$END$
-</body>
-</html>
+<!-- Navigation -->
+<header class="header">
+    <nav class="nav">
+        <div class="logo">🐾 Pet Hub Service</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#dogs">Our Dogs</a></li>
+            <li><a href="#donate">Donate</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu">☰</div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-container">
+        <div class="hero-left">
+            <div class="hero-badge">
+                <span>🐾</span>
+                <span>Trusted by 10,000+ families</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Find Your Perfect</span>
+                <span class="title-highlight">Furry Friend</span>
+            </h1>
+            <p class="hero-description">
+                Join thousands of happy families who found their perfect companion.
+                Every adoption saves two lives - yours and theirs.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">2,847</span>
+                    <span class="stat-label">Dogs Rescued</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2,234</span>
+                    <span class="stat-label">Happy Adoptions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="#dogs" class="btn btn-primary">
+                    <span>🐕</span>
+                    <span>Browse Dogs</span>
+                </a>
+                <a href="#donate" class="btn btn-secondary">
+                    <span>❤️</span>
+                    <span>Make a Donation</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-image-container">
+                <div class="hero-image">
+                </div>
+                <div class="floating-card card-1">
+                    <div class="card-icon">🏠</div>
+                    <div class="card-content">
+                        <h4>Forever Home</h4>
+                        <p>Loving families</p>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-icon">💝</div>
+                    <div class="card-content">
+                        <h4>Daily Care</h4>
+                        <p>Medical & food</p>
+                    </div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-content">
+                        <h4>Perfect Match</h4>
+                        <p>Compatibility</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <div class="scroll-arrow">↓</div>
+        <span>Scroll to explore</span>
+    </div>
+</section>
+
+<!-- Dogs Section -->
+<section id="dogs" class="dogs-section">
+    <div class="container">
+        <h2 class="section-title">Meet Our Amazing Dogs</h2>
+        <p class="section-subtitle">Each of these beautiful souls is waiting for their forever home. They've been rescued, rehabilitated, and are ready to become your loyal companion.</p>
+
+        <div class="dogs-grid">
+            <div class="dog-card">
+                <div class="dog-image"></div>
+                <div class="dog-info">
+                    <h3 class="dog-name">Buddy</h3>
+                    <div class="dog-details">
+                        <span class="dog-tag">3 years old</span>
+                        <span class="dog-tag">Medium</span>
+                        <span class="dog-tag">Friendly</span>
+                    </div>
+                    <p class="dog-description">Buddy is a gentle soul who loves playing fetch and cuddling on the couch. He's great with kids and other pets, making him the perfect family companion.</p>
+                    <button class="adopt-btn" onclick="openAdoptModal('Buddy')">Adopt Buddy</button>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image"></div>
+                <div class="dog-info">
+                    <h3 class="dog-name">Luna</h3>
+                    <div class="dog-details">
+                        <span class="dog-tag">2 years old</span>
+                        <span class="dog-tag">Small</span>
+                        <span class="dog-tag">Energetic</span>
+                    </div>
+                    <p class="dog-description">Luna is a bundle of joy who loves adventures and learning new tricks. She's looking for an active family who can match her enthusiasm for life.</p>
+                    <button class="adopt-btn" onclick="openAdoptModal('Luna')">Adopt Luna</button>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image"></div>
+                <div class="dog-info">
+                    <h3 class="dog-name">Max</h3>
+                    <div class="dog-details">
+                        <span class="dog-tag">5 years old</span>
+                        <span class="dog-tag">Large</span>
+                        <span class="dog-tag">Calm</span>
+                    </div>
+                    <p class="dog-description">Max is a wise and gentle giant who enjoys peaceful walks and quiet evenings. He's perfect for someone looking for a loyal, low-maintenance companion.</p>
+                    <button class="adopt-btn" onclick="openAdoptModal('Max')">Adopt Max</button>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image"></div>
+                <div class="dog-info">
+                    <h3 class="dog-name">Bella</h3>
+                    <div class="dog-details">
+                        <span class="dog-tag">1 year old</span>
+                        <span class="dog-tag">Medium</span>
+                        <span class="dog-tag">Playful</span>
+                    </div>
+                    <p class="dog-description">Bella is a young, spirited pup who's eager to please and quick to learn. She's looking for a patient family to help her grow into the amazing dog she's meant to be.</p>
+                    <button class="adopt-btn" onclick="openAdoptModal('Bella')">Adopt Bella</button>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image"></div>
+                <div class="dog-info">
+                    <h3 class="dog-name">Charlie</h3>
+                    <div class="dog-details">
+                        <span class="dog-tag">4 years old</span>
+                        <span class="dog-tag">Large</span>
+                        <span class="dog-tag">Protective</span>
+                    </div>
+                    <p class="dog-description">Charlie is a loyal guardian who forms strong bonds with his family. He's well-trained and would make an excellent companion for someone seeking both friendship and security.</p>
+                    <button class="adopt-btn" onclick="openAdoptModal('Charlie')">Adopt Charlie</button>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image"></div>
+                <div class="dog-info">
+                    <h3 class="dog-name">Daisy</h3>
+                    <div class="dog-details">
+                        <span class="dog-tag">6 months old</span>
+                        <span class="dog-tag">Small</span>
+                        <span class="dog-tag">Curious</span>
+                    </div>
+                    <p class="dog-description">Daisy is an adorable puppy with boundless curiosity and love to give. She's looking for a family who can provide training, socialization, and lots of love.</p>
+                    <button class="adopt-btn" onclick="openAdoptModal('Daisy')">Adopt Daisy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Donation Section -->
+<section id="donate" class="donation-section">
+    <div class="container">
+        <div class="donation-story">
+            <div class="story-content">
+                <h2 class="story-title">Peter's Story</h2>
+                <div class="story-text">
+                    <p>Peter's body gave out before anyone ever gave him a chance. His bones protruded through paper-thin skin, his frame collapsing onto the dirt as he curled up — ready to die alone, invisible and in pain.</p>
+
+                    <p>When we found him, Peter was barely alive. His skin was eaten away by severe infections, his body covered in open wounds. We don't know how long he suffered, or even how old he is but his eyes said it all: he had endured more than most could bear.</p>
+
+                    <p>And yet... Peter survived. Thanks to our dedicated vets and the generosity of people like you, Peter healed. Today, he's unrecognizable: strong, safe, and deeply loved in his forever home.</p>
+
+                    <p>Peter is one of many. Every day, animals just like him are waiting — injured, starving, and alone.</p>
+                </div>
+
+                <div class="donation-cta">
+                    <p class="cta-text">Any amount is appreciated and your donation is 100% tax deductible!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="donation-layout">
+            <div class="donation-image">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Happy dog being petted">
+            </div>
+
+            <div class="donation-form-container">
+                <div class="form-header">
+                    <div class="form-title">
+                        <h3>Choose amount</h3>
+                        <div class="form-security">
+                            <span class="lock-icon">🔒</span>
+                            <span class="steps">●●●</span>
+                            <span class="arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donation-tabs">
+                    <button class="tab-btn active">One-time</button>
+                    <button class="tab-btn">Monthly</button>
+                </div>
+
+                <div class="recurring-info">
+                    <p>You can log in to edit your recurring donation any time</p>
+                    <span class="info-icon">ⓘ</span>
+                </div>
+
+                <div class="currency-selector">
+                    <select>
+                        <option>US Dollar (USD)</option>
+                        <option>Euro (EUR)</option>
+                        <option>British Pound (GBP)</option>
+                    </select>
+                </div>
+
+                <div class="donation-amounts">
+                    <button class="amount-btn" onclick="selectAmount(10)">$10</button>
+                    <button class="amount-btn" onclick="selectAmount(50)">$50</button>
+                    <button class="amount-btn" onclick="selectAmount(100)">$100</button>
+                </div>
+
+                <div class="custom-amount">
+                    <label>$ Custom Amount</label>
+                    <input type="number" id="customAmount" placeholder="Enter amount" min="1">
+                </div>
+
+                <button class="donation-btn" onclick="processDonation()">
+                    <span>💝</span>
+                    <span>Donate Now</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Section -->
+<section class="impact-section">
+    <div class="container">
+        <h2 class="section-title">Our Impact Together</h2>
+        <p class="section-subtitle">Thanks to amazing supporters like you, we've been able to make a real difference in the lives of countless dogs.</p>
+
+        <div class="impact-stats">
+            <div class="stat-card">
+                <div class="stat-number">2,847</div>
+                <div class="stat-label">Dogs Rescued</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2,234</div>
+                <div class="stat-label">Successful Adoptions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1,456</div>
+                <div class="stat-label">Medical Treatments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">893</div>
+                <div class="stat-label">Happy Families</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Pet Hub Service</h3>
+            <p>We're dedicated to rescuing, rehabilitating, and rehoming dogs in need. Our mission is to connect loving families with their perfect canine companions.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="#dogs">Available Dogs</a>
+            <a href="#donate">Donate</a>
+            <a href="#volunteer">Volunteer</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h3>Contact Info</h3>
+            <p>📧 info@pawsandhearts.lk</p>
+            <p>📞 +94 11 234 5678</p>
+            <p>📍 123 Hope Street, Colombo 07</p>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Pet Hub Service. All rights reserved. Made with ❤️ for our furry friends.</p>
+    </div>
+</footer>
+
+<!-- Adoption Modal -->
+<div id="adoptModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Adoption Inquiry</h2>
+        <p id="adoptMessage"></p>
+        <button class="btn btn-primary" onclick="closeModal()">Send Inquiry</button>
+    </div>
+</div>
+
+<!-- Donation Success Modal -->
+<div id="donationModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Thank You! 🎉</h2>
+        <p id="donationMessage"></p>
+        <button class="btn btn-primary" onclick="closeModal()">Continue</button>
+    </div>
+</div>
+
+<script>
+    // Global variables
+    let selectedAmount = 0;
+    let currentModal = null;
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            }
+        });
+    });
+
+    // Smooth scrolling for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Header background change on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = 'none';
+        }
+    });
+
+    // Donation amount selection
+    function selectAmount(amount) {
+        selectedAmount = amount;
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        document.getElementById('customAmount').value = amount;
+    }
+
+    // Process donation
+    function processDonation() {
+        const amount = selectedAmount || document.getElementById('customAmount').value;
+        if (amount && amount > 0) {
+            document.getElementById('donationMessage').textContent = `Thank you for your generous donation of $${amount}! Your contribution will help us rescue and care for more dogs in need.`;
+            document.getElementById('donationModal').style.display = 'block';
+            currentModal = 'donation';
+        } else {
+            alert('Please select or enter a valid donation amount.');
+        }
+    }
+
+    // Open adoption modal
+    function openAdoptModal(dogName) {
+        document.getElementById('adoptMessage').textContent = `Thank you for your interest in adopting ${dogName}! Our team will contact you within 24 hours to discuss the adoption process and arrange a meet-and-greet.`;
+        document.getElementById('adoptModal').style.display = 'block';
+        currentModal = 'adopt';
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById('adoptModal').style.display = 'none';
+        document.getElementById('donationModal').style.display = 'none';
+        currentModal = null;
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const adoptModal = document.getElementById('adoptModal');
+        const donationModal = document.getElementById('donationModal');
+        if (event.target === adoptModal || event.target === donationModal) {
+            closeModal();
+        }
+    })
