@@ -1344,6 +1344,116 @@
                 transform: none;
             }
         }
+
+
+        /* Header */
+        /*header {*/
+        /*    background-color: #ff9800;*/
+        /*    color: white;*/
+        /*    text-align: center;*/
+        /*    padding: 30px 20px;*/
+        /*}*/
+
+        .contact-header {
+            /*background-color: #ff9800;*/
+            color: black;
+            text-align: center;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .contact-header p {
+            font-size: 18px;
+            max-width: 600px;
+        }
+
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 90vh;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .contact-left {
+            flex: 1;
+            background: url('full-shot-women-petting-dog.jpg') center/cover no-repeat;
+            border-radius: 12px 0 0 12px;
+            min-height: 450px;
+            margin: 10px;
+        }
+
+        .contact-right {
+            flex: 1;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .contact-right h2 {
+            margin-bottom: 20px;
+            color: #e65100;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            padding: 14px 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e65100;
+        }
+
+        @media(max-width: 768px) {
+            .contact-container {
+                flex-direction: column;
+                padding: 30px 15px;
+            }
+
+            .contact-left, .contact-right {
+                width: 100%;
+                border-radius: 12px;
+            }
+
+            .contact-left {
+                height: 250px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1437,7 +1547,7 @@
     </div>
 </section>
 
-<section class="about-container">
+<section class="about-container" id="about">
     <div class="about-header">
         <h1>About Us</h1>
         <p>Connecting loving hearts with loyal companions</p>
@@ -1680,7 +1790,7 @@
 </section>
 
 
-<header>
+<header class="contact-header">
     <h1>Get in Touch</h1>
     <p>We’re excited to help you find your perfect furry friend 🐶</p>
 </header>
