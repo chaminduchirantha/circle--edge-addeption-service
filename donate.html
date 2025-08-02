@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Save Vulnerable Pets - Donate Today</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            /*background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
+            min-height: 100vh;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #d35400;
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffe0b2;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #ffe0b2, #fff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+
+        /* Video Section */
+        .video-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            /*box-shadow: 0 20px 60px rgba(0,0,0,0.1);*/
+        }
+
+        .video-content {
+            text-align: center;
+        }
+
+        .video-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        /* Weakness Info Section */
+        .weakness-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            /*box-shadow: 0 20px 60px rgba(0,0,0,0.1);*/
+        }
+
+        .weakness-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .weakness-text h2 {
+            font-size: 2.2rem;
+            color: black;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .weakness-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .weakness-image {
+            text-align: center;
+        }
+
+        .weakness-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .weakness-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Donation Section */
+        .donation-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            /*box-shadow: 0 20px 60px rgba(0,0,0,0.1);*/
+        }
+
+        .donation-story {
+            margin-bottom: 50px;
+        }
+
+        .story-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .story-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .donation-cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .donation-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .donation-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .donation-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .donation-form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-title h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+        }
+
+        .form-security {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #7f8c8d;
+        }
+
+        .currency-selector {
+            margin-bottom: 30px;
+        }
+
+        .currency-selector select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .currency-selector select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .custom-amount {
+            margin-bottom: 30px;
+        }
+
+        .custom-amount label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .donation-btn {
+            width: 100%;
+            padding: 18px;
+            background: #ffa726;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .donation-btn:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .weakness-content,
+            .donation-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .video-container iframe {
+                height: 250px;
+            }
+
+            .donation-form-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<!--<header class="header">-->
+<!--    <nav class="nav">-->
+<!--        <div class="logo">🐾 Pet Hub Adoption Service</div>-->
+<!--        <ul class="nav-links">-->
+<!--            <li><a href="index.html">Home</a></li>-->
+<!--            <li><a href="#about">About Us</a></li>-->
+<!--            <li><a href="donate.html">Donate</a></li>-->
+<!--            <li><a href="#contact">Contact</a></li>-->
+<!--        </ul>-->
+<!--        <div class="mobile-menu">☰</div>-->
+<!--    </nav>-->
+<!--</header>-->
+
+<!-- Video Section -->
+<div class="container">
+<!--    <section class="video-section">-->
+<!--        <div class="video-content">-->
+<!--            <h2 class="video-title">The Reality of Pet Weakness and Suffering</h2>-->
+<!--            <div class="video-container">-->
+<!--&lt;!&ndash;                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <!-- Pet Weakness Information Section -->
+    <section class="weakness-section">
+        <div class="container">
+            <div class="weakness-content">
+                <div class="weakness-text">
+                    <h2>Understanding Pet Vulnerability</h2>
+                    <p>Thousands of pets suffer daily from malnutrition, disease, and abandonment. These vulnerable animals face numerous challenges that weaken their bodies and spirits. Without proper nutrition, medical care, and shelter, pets quickly deteriorate both physically and emotionally.</p>
+
+                    <p>Weakness in abandoned pets manifests in various ways: severe weight loss, dehydration, infected wounds, parasitic infestations, and psychological trauma. Many of these animals have been living on the streets for weeks or months, scavenging for food and fighting to survive harsh weather conditions.</p>
+
+                    <p>The most heartbreaking aspect is that these pets often lose their trust in humans after experiencing neglect or abuse. They become fearful, withdrawn, and sometimes aggressive out of desperation. However, with proper care, patience, and love, even the most damaged animals can heal and learn to trust again.</p>
+
+                    <p>Your support helps us provide immediate medical attention, nutritious food, warm shelter, and the rehabilitation these vulnerable pets desperately need. Every dollar you donate directly impacts an animal's journey from suffering to safety.</p>
+                </div>
+                <div class="weakness-image">
+                    <img src="img.png" alt="Weak abandoned dog needing help">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Original Donation Section -->
+    <section id="donate" class="donation-section">
+        <div class="container">
+            <div class="donation-layout">
+                <div class="donation-image">
+                    <img src="img_1.png">
+                </div>
+                <div class="donation-form-container">
+                    <div class="form-header">
+                        <div class="form-title">
+                            <h3>Choose amount</h3>
+                            <div class="form-security">
+                                <span class="lock-icon">🔒</span>
+                                <span class="steps">●●●</span>
+                                <span class="arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="currency-selector">
+                        <select>
+                            <option>US Dollar (USD)</option>
+                            <option>Euro (EUR)</option>
+                            <option>British Pound (GBP)</option>
+                        </select>
+                    </div>
+                    <div class="custom-amount">
+                        <label>$ Custom Amount</label>
+                        <input type="number" id="customAmount" placeholder="Enter amount" min="1">
+                    </div>
+                    <button class="donation-btn" onclick="processDonation()">
+                        <span>💝</span>
+                        <span>Donate Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="container">
+        <p>&copy; 2024 Pet Rescue Foundation. All rights reserved. | Every donation helps save a life.</p>
+    </div>
+</div>
+
+<script>
+    function selectAmount(amount) {
+        document.getElementById('customAmount').value = amount;
+    }
+
+    function processDonation() {
+        const amount = document.getElementById('customAmount').value;
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid donation amount.');
+            return;
+        }
+
+        // Simulate donation processing
+        alert(`Thank you for your generous donation of $${amount}! Your contribution will help save vulnerable pets like Peter.`);
+
+        // Here you would typically integrate with a payment processor
+        // like PayPal, Stripe, or Square
+    }
+
+    // Add some interactive animations
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('.video-section, .weakness-section, .donation-section');
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    // Initialize animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.video-section, .weakness-section, .donation-section');
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+        });
+    });
+</script>
+</body>
+</html>
