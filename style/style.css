@@ -592,6 +592,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    padding: 0 2rem;
     max-width: 1200px;
     margin: 0 auto;
     align-items: stretch;
@@ -1085,7 +1086,7 @@ body {
     }
 
     .dogs-section, .donation-section, .impact-section {
-        padding: 4rem 3%;
+        padding: 6rem 3%;
     }
 }
 
@@ -1519,7 +1520,7 @@ button:hover {
 }
 
 .weakness-image img:hover {
-    transform: scale(1.05);
+    transform: scale(0.95);
 }
 
 /* Donation Section */
@@ -1583,7 +1584,7 @@ button:hover {
 }
 
 .donation-image img:hover {
-    transform: scale(1.05);
+    transform: scale(0.95);
 }
 
 .donation-form-container {
@@ -1698,8 +1699,8 @@ button:hover {
 @media (max-width: 768px) {
     .weakness-content,
     .donation-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        grid-template-columns: 1fr; /* Stack items vertically */
+        padding: 0 1rem; /* Space from edges */
     }
 
     .header h1 {
@@ -1708,6 +1709,26 @@ button:hover {
 
     .video-container iframe {
         height: 250px;
+    }
+
+
+    .donation-image {
+        margin-top: 2rem; /* Optional spacing between text and image */
+    }
+
+    .donation-image img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 15px;
+    }
+
+    .story-content {
+        padding:3rem 0.5rem; /* Text content side padding */
+    }
+
+    .story-text p {
+        font-size: 1rem; /* Slightly smaller font for readability */
+        line-height: 1.6;
     }
 
     .donation-form-container {
@@ -1722,14 +1743,14 @@ button:hover {
     color: black;
 }
 
-.section-header {
+.donation-header {
     text-align: center;
     margin-bottom: 60px;
     color: black;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.section-header h1 {
+.donation-header h1 {
     font-size: 3.5em;
     margin-bottom: 20px;
     font-weight: 700;
@@ -1737,7 +1758,7 @@ button:hover {
     background-clip: text;
 }
 
-.section-header p {
+.donation-header p {
     font-size: 1.3em;
     max-width: 600px;
     margin: 0 auto;
@@ -1860,12 +1881,56 @@ button:hover {
         gap: 40px;
     }
 
-    .section-header h1 {
+    .donation-header h1 {
         font-size: 2.5em;
     }
 
     .content-left-contact, .content-right-contact {
         padding: 30px 20px;
+    }
+}
+
+.contact-info-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50px;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.contact-item {
+    flex: 1 1 200px;
+    max-width: 270px;
+    min-width: 180px;
+}
+
+.contact-item i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.contact-item i:hover{
+    color: #d35400;
+    cursor: pointer;
+    transition-duration: 800ms;
+}
+
+.contact-item:hover{
+    color: #d35400;
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+
+/* Optional media query to reduce gap on very small screens */
+@media (max-width: 480px) {
+    .contact-info-icons {
+        gap: 20px;
     }
 }
 

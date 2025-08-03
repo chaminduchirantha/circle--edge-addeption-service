@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="fontawasome/fontawesome-free-6.7.2-web/css/all.css">
 </head>
 <body>
 <!-- Navigation -->
@@ -55,7 +57,7 @@
                     <span>🐕</span>
                     <span>Book Now</span>
                 </a>
-                <a href="#donation" class="btn btn-secondary">
+                <a href="#donation" id="donate-button3" class="btn btn-secondary">
                     <span>❤️</span>
                     <span>Make a Donation</span>
                 </a>
@@ -182,19 +184,33 @@
 <!--</header>-->
 
 <!-- Video Section -->
-    <!--    <section class="video-section">-->
-    <!--        <div class="video-content">-->
-    <!--            <h2 class="video-title">The Reality of Pet Weakness and Suffering</h2>-->
-    <!--            <div class="video-container">-->
-    <!--&lt;!&ndash;                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>&ndash;&gt;-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </section>-->
+<!--        <section class="video-section">-->
+<!--            <div class="video-content">-->
+<!--                <h2 class="video-title">The Reality of Pet Weakness and Suffering</h2>-->
+<!--                <div class="video-container">-->
+<!--                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
 
     <!-- Pet Weakness Information Section -->
     <section class="weakness-section" id="donation">
+        <header class="donation-header">
+            <h1>Support Vulnerable Pets</h1>
+            <p>Together, we can rescue, heal, and protect the animals who need us the most 🐾</p>
+        </header>
+<!--        <div class="video-content">-->
+<!--            <h2 class="video-title">The Reality of Pet Weakness and Suffering</h2>-->
+<!--            <div class="video-container">-->
+<!--                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <br>-->
         <div class="container">
             <div class="weakness-content">
+
                 <div class="weakness-text">
 <!--                    <h2>Understanding Pet Vulnerability</h2>-->
                     <p>Thousands of pets suffer daily from malnutrition, disease, and abandonment. These vulnerable animals face numerous challenges that weaken their bodies and spirits. Without proper nutrition, medical care, and shelter, pets quickly deteriorate both physically and emotionally.</p>
@@ -267,9 +283,28 @@
 <!--</div>-->
 
 <section class="section-contact" id="contact">
-    <header class="section-header">
+    <header class="donation-header">
         <h1>Get in Touch</h1>
         <p>We're excited to help you find your perfect furry friend 🐶</p>
+        <div class="contact-info-icons">
+            <div class="contact-item">
+                <i class="fa fa-phone"></i>
+                <p>call us on<br>
+                    +94 0742721724<br>
+                    +94 781 11 5950</p>
+            </div>
+            <div class="contact-item">
+                <i class="fa fa-envelope"></i>
+                <p>email us at<br>
+                    epethub@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fa fa-map-marker"></i>
+                <p class="address">Visit to meet<br>
+                    96 D/1 Namaluwa<br>
+                    Kothalawala, Bandaragama.</p>
+            </div>
+        </div>
     </header>
 
     <div class="container-contact">
@@ -298,7 +333,7 @@
                 <input type="email" name="email" placeholder="Your Email" required />
                 <input type="tel" name="phone" placeholder="Phone Number" />
                 <input type="text" name="subject" placeholder="Subject" />
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <textarea name="text" rows="13" placeholder="" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </div>
@@ -314,15 +349,15 @@
         </div>
         <div class="footer-section">
             <h3>Quick Links</h3>
-            <a href="#dogs">Available Dogs</a>
-            <a href="#donate">Donate</a>
-            <a href="#volunteer">Volunteer</a>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#donation" id="donate-button2">Donate</a>
             <a href="#contact">Contact Us</a>
         </div>
         <div class="footer-section">
             <h3>Contact Info</h3>
-            <p>📧 info@pawsandhearts.lk</p>
-            <p>📞 +94 11 234 5678</p>
+            <p>📧 epethub@gmail.com</p>
+            <p>📞 +94 0742721724</p>
             <p>📍 123 Hope Street, Colombo 07</p>
         </div>
         <div class="footer-section">
@@ -375,6 +410,22 @@
     });
 
     $('#donate-button').on('click', function() {
+        $('#home').css('display', 'none');
+        $('#about').css('display', 'none');
+        $('#contact').css('display', 'none');
+        $('#donation').css('display', 'block');
+        $('#impact').css('display', 'none');
+    });
+
+    $('#donate-button2').on('click', function() {
+        $('#home').css('display', 'none');
+        $('#about').css('display', 'none');
+        $('#contact').css('display', 'none');
+        $('#donation').css('display', 'block');
+        $('#impact').css('display', 'none');
+    });
+
+    $('#donate-button3').on('click', function() {
         $('#home').css('display', 'none');
         $('#about').css('display', 'none');
         $('#contact').css('display', 'none');
